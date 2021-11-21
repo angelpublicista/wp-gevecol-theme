@@ -72,6 +72,7 @@ const loadChartJs = (urlGoogle, element) => {
             type: "bar",
             data: chartdata,
             options: {
+                maintainAspectRatio: false,
                 plugins: {
                     title: {
                         display: true,
@@ -168,29 +169,30 @@ jQuery(function ($) {
 
             markup += `
             <div class="gev-col" style="margin-top: 80px;">
-            <div class="gev-tax-filters">
+                <div class="gev-tax-filters">
 
-                <span class="gev-tax-name">${countryNames}</span>
-                <span class="gev-tax-separator">/</span>
-                <span class="gev-tax-name">${sectorNames}</span>
-                <span class="gev-tax-separator">/</span>
-                <span class="gev-tax-name">${subsectorNames}</span>
-            </div>
+                    <span class="gev-tax-name">${countryNames}</span>
+                    <span class="gev-tax-separator">/</span>
+                    <span class="gev-tax-name">${sectorNames}</span>
+                    <span class="gev-tax-separator">/</span>
+                    <span class="gev-tax-name">${subsectorNames}</span>
+                </div>
 
-            <div class="gev-tax-date">
-                <span class="gev-tax-name">${mesNames}</span>
-                <span class="gev-tax-separator">/</span>
-                <span class="gev-tax-name">${mesAno}</span>
-            </div>
+                <div class="gev-tax-date">
+                    <span class="gev-tax-name">${mesNames}</span>
+                    <span class="gev-tax-separator">/</span>
+                    <span class="gev-tax-name">${mesAno}</span>
+                </div>
 
-            <h4 class="gev-chart-title">${item.title}</h4>
-
-            <canvas 
-                class="gev-charts" 
-                id="chart-${item.itemId}" 
-                data-url="${item.urlgs} "
-                data-settings= "${preSettings}"
-            ></canvas>
+                <h4 class="gev-chart-title">${item.title}</h4>
+                <div class="gev-chart-container">
+                <canvas 
+                    class="gev-charts" 
+                    id="chart-${item.itemId}" 
+                    data-url="${item.urlgs} "
+                    data-settings= "${preSettings}"
+                ></canvas>
+                </div>
             </div>
             `
         });

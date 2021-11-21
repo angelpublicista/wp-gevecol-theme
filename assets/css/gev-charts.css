@@ -2,9 +2,16 @@
     background-color: #246ED3;
 }
 
+.gev-chart-container{
+    position: relative;
+    margin: auto;
+    height: 70vh;
+    width: 100%;
+}
+
 .gev-container{
     width: 100%;
-    max-width: 1290px;
+    max-width: 1200px;
     margin: auto;
     padding: 2em;
 }
@@ -12,6 +19,8 @@
 .gev-wrap-filters{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 .gev-wrap-filters select{
@@ -30,7 +39,7 @@
     box-sizing: border-box;
     margin: 10px;
     position: relative;
-    width: 200px;
+    width: 180px;
 }
 
 .gev-arrow-cont{
@@ -103,4 +112,28 @@
     font-family: 'FS Elliot Pro', sans-serif;
     font-weight: bold;
     font-size: 25px;
+}
+
+@media (max-width: 991.98px) {
+    .gev-select-wrap{
+        width: calc(90% / 3);
+    }
+
+    .gev-wrap-filters{
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .gev-select-wrap{
+        width: calc(87% / 2);
+    }
+
+    .gev-wrap-filters{
+        padding: 1em;
+    }
+
+    .gev-chart-container{
+        height: 60vh;
+    }
 }
