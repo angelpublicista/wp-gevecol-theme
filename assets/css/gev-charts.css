@@ -1,0 +1,106 @@
+.gev-filters-bar{
+    background-color: #246ED3;
+}
+
+.gev-container{
+    width: 100%;
+    max-width: 1290px;
+    margin: auto;
+    padding: 2em;
+}
+
+.gev-wrap-filters{
+    display: flex;
+    justify-content: center;
+}
+
+.gev-wrap-filters select{
+    /* Reset Select */
+    appearance: none;
+    outline: 0;
+    border: 0;
+    box-shadow: none;
+    width: 100%;
+    border-radius: 50px;
+    font-family: 'FS Elliot Pro', sans-serif;
+    font-weight: bold;
+    color: #868B8D;
+}
+.gev-select-wrap{
+    box-sizing: border-box;
+    margin: 10px;
+    position: relative;
+    width: 200px;
+}
+
+.gev-arrow-cont{
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    pointer-events: none;
+}
+
+#gev-btn-filter{
+    margin: 10px;
+    background-color: #22D0A4;
+    border-color: #22D0A4;
+    color: #001E64;
+    font-family: 'FS Elliot Pro', sans-serif;
+    outline: none;
+}
+
+#gev-cont-graphics{
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.gev-loader{
+    text-align: center;
+    padding: 3em;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: white;
+    transform: translateY(-200%);
+    opacity: 0;
+    transition: opacity .4s;
+    z-index: 4;
+}
+
+.gev-loader.active{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gev-loader img{
+    width: 100px;
+}
+
+.gev-not-found{
+    text-align: center;
+    font-family: 'FS Elliot Pro', sans-serif;
+    font-size: 30px;
+    color: #001C76;
+}
+
+.gev-tax-filters, .gev-tax-date{
+    color: #246ED3;
+    font-size: 14px;
+    font-family: 'FS Elliot Pro', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.gev-tax-date{
+    text-transform: unset;
+}
+
+.gev-chart-title{
+    color: #001C76;
+    font-family: 'FS Elliot Pro', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+}
