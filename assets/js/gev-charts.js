@@ -39,7 +39,6 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
 
             const colors = dataSettings.colors;
             let dataj = JSON.parse(data.toJSON());
-            console.log(dataj.cols[0].label);
             const labels = [];
             for (c = 1; c < dataj.cols.length; c++) {
             if (dataj.cols[c].label != "") {
