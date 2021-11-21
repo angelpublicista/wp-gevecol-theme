@@ -27,15 +27,17 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
         var columns = data.getNumberOfColumns();
         var rows = data.getNumberOfRows();
 
-        console.log(data)
-
+        
         var canvas = document.getElementById(id);
         
-        const dataSettings = canvas.dataset.settings
+        // Obtain settings
+        const dataSettingsJson = canvas.dataset.settings
 
-        if(dataSettings){
-            
-            const colors = ["rgb(34, 208, 164)", "rgb(36, 110, 211)", "rgb(34, 208, 164)", "rgb(255, 87, 51)", "rgb(255, 87, 51)"];
+        if(dataSettingsJson){
+            // Json Parse data-settings
+            const dataSettings = JSON.parse(dataSettingsJson)
+
+            const colors = dataSettings.colors;
             let dataj = JSON.parse(data.toJSON());
             console.log(dataj.cols[0].label);
             const labels = [];
@@ -50,14 +52,16 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
                 const series_data = [];
                 for (j = 1; j < dataj.rows[i].c.length; j++) {
                     if (dataj.rows[i].c[j] != null) {
-                    if (dataj.rows[i].c[j].v != null) {
-                        series_data.push(dataj.rows[i].c[j].v);
-                    } else {
-                        series_data.push(0);
-                    }
+                        if (dataj.rows[i].c[j].v != null) {
+                            series_data.push(dataj.rows[i].c[j].v);
+                        } else {
+                            series_data.push(0);
+                        }
                     }
             
                 }
+
+                console.log(series_data)
                 var dataset = {
                     label: dataj.rows[i].c[0].v,
                     backgroundColor: colors[i],
@@ -75,7 +79,7 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
             };
             
             var setup = {
-            type: "bar",
+            type: dataSettings.type,
             data: chartdata,
             options: {
                 maintainAspectRatio: false,
@@ -144,6 +148,8 @@ jQuery(function ($) {
     
 
     function searchResults(items){
+
+        // Arrays to string by separator
         function joinItemsTax(term, separator){
             const itemTax = term
             const itemTaxName = []
@@ -158,14 +164,11 @@ jQuery(function ($) {
         }
         var markup = '';
 
-        const preSettings = {
-            "settings": {
-                "colors": ["rgb(34, 208, 164)", "rgb(36, 110, 211)", "rgb(34, 208, 164)", "rgb(255, 87, 51)", "rgb(255, 87, 51)"],
-                "type": "bar"
-            }
-        }
-
         items.forEach(item => {
+            // Settings to JSON
+            const settingsData = JSON.stringify(item.settings)
+
+            // Names of taxonomies
             const countryNames = joinItemsTax(item.termCountry, ',')
             const sectorNames = joinItemsTax(item.termSector, ',')
             const subsectorNames = joinItemsTax(item.termSubsector, ',')
@@ -197,7 +200,7 @@ jQuery(function ($) {
                     id="chart-${item.itemId}" 
                     data-url="${item.urlgs} "
                     data-sheet="${item.sheet}"
-                    data-settings= "${preSettings}"
+                    data-settings= '${settingsData}'
                 ></canvas>
                 </div>
             </div>

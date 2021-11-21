@@ -99,7 +99,11 @@ if(!function_exists('gev_filter_test')){
                 'termSubsector' => get_the_terms($item->ID, 'gev_subsector'),
                 'sheet' => get_field('nombre_de_la_hoja', $item->ID),
                 'termMes' => get_the_terms($item->ID, 'gev_mes'),
-                'termAno' => get_the_terms($item->ID, 'gev_ano')
+                'termAno' => get_the_terms($item->ID, 'gev_ano'),
+                'settings' => [
+                    'type' => get_field('tipo_de_grafica', $item->ID),
+                    'colors' => ["rgb(34, 208, 164)", "rgb(36, 110, 211)", "rgb(34, 208, 164)", "rgb(255, 87, 51)", "rgb(255, 87, 51)"]
+                ]
             ];
         }
 

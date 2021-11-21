@@ -144,45 +144,48 @@ if(!function_exists('grid_gev_charts_func')){
 							$query->the_post();
 							?>
 							<?php 
-						$post_id = get_the_ID(); 
-			
-						$paises = implItems(get_the_terms($post->ID, 'gev_country'), ',');
-						$sectores = implItems(get_the_terms($post->ID, 'gev_sector'), ',');
-						$subsectores = implItems(get_the_terms($post->ID, 'gev_subsector'), ',');
-						$meses = implItems(get_the_terms($post->ID, 'gev_mes'), ' - ');
-						$anos = implItems(get_the_terms($post->ID, 'gev_ano'), ' - ');
+								$post_id = get_the_ID(); 
+					
+								$paises = implItems(get_the_terms($post->ID, 'gev_country'), ',');
+								$sectores = implItems(get_the_terms($post->ID, 'gev_sector'), ',');
+								$subsectores = implItems(get_the_terms($post->ID, 'gev_subsector'), ',');
+								$meses = implItems(get_the_terms($post->ID, 'gev_mes'), ' - ');
+								$anos = implItems(get_the_terms($post->ID, 'gev_ano'), ' - ');
 
-						?>
-						<div class="gev-col" style="margin-top: 80px;">
-							<div class="gev-tax-filters">
+								$settings = [
+									'type' => get_field('tipo_de_grafica'),
+									'colors' => ["rgb(34, 208, 164)", "rgb(36, 110, 211)", "rgb(34, 208, 164)", "rgb(255, 87, 51)", "rgb(255, 87, 51)"]
+								];
 
-								<span class="gev-tax-name"><?php echo $paises ?></span>
-								<span class="gev-tax-separator">/</span>
-								<span class="gev-tax-name"><?php echo $sectores ?></span>
-								<span class="gev-tax-separator">/</span>
-								<span class="gev-tax-name"><?php echo $subsectores ?></span>
+								$jsonSettings = json_encode($settings);
+							?>
+							<div class="gev-col" style="margin-top: 80px;">
+								<div class="gev-tax-filters">
+									<span class="gev-tax-name"><?php echo $paises ?></span>
+									<span class="gev-tax-separator">/</span>
+									<span class="gev-tax-name"><?php echo $sectores ?></span>
+									<span class="gev-tax-separator">/</span>
+									<span class="gev-tax-name"><?php echo $subsectores ?></span>
+								</div>
+
+								<div class="gev-tax-date">
+									<span class="gev-tax-name"><?php echo $meses ?></span>
+									<span class="gev-tax-separator">/</span>
+									<span class="gev-tax-name"><?php echo $anos ?></span>
+								</div>
+
+								<h4 class="gev-chart-title"><?php the_title(); ?></h4>
+
+								<div class="gev-chart-container">
+									<canvas 
+										class="gev-charts" 
+										id="chart-<?php echo $post_id ?>" 
+										data-url="<?php the_field('url_google_sheets'); ?>"
+										data-sheet="<?php the_field('nombre_de_la_hoja'); ?>"
+										data-settings= '<?php echo $jsonSettings; ?>'
+									></canvas>
+								</div>
 							</div>
-
-							<div class="gev-tax-date">
-								<span class="gev-tax-name"><?php echo $meses ?></span>
-								<span class="gev-tax-separator">/</span>
-								<span class="gev-tax-name"><?php echo $anos ?></span>
-							</div>
-
-							
-
-							<h4 class="gev-chart-title"><?php the_title(); ?></h4>
-
-                            <div class="gev-chart-container">
-                                <canvas 
-                                    class="gev-charts" 
-                                    id="chart-<?php echo $post_id ?>" 
-                                    data-url="<?php the_field('url_google_sheets'); ?>"
-                                    data-sheet="<?php the_field('nombre_de_la_hoja') ?>"
-                                    data-settings= "{}"
-                                ></canvas>
-                            </div>
-						</div>
 							<?php
 						}
 					}
