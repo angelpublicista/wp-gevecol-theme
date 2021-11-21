@@ -97,6 +97,7 @@ if(!function_exists('gev_filter_test')){
                 'termCountry' => get_the_terms($item->ID, 'gev_country'),
                 'termSector' => get_the_terms($item->ID, 'gev_sector'),
                 'termSubsector' => get_the_terms($item->ID, 'gev_subsector'),
+                'sheet' => get_field('nombre_de_la_hoja', $item->ID),
                 'termMes' => get_the_terms($item->ID, 'gev_mes'),
                 'termAno' => get_the_terms($item->ID, 'gev_ano')
             ];

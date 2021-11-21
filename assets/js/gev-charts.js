@@ -1,7 +1,8 @@
-const loadChartJs = (urlGoogle, element) => {
+const loadChartJs = (urlGoogle, element, nameSheet) => {
 
     const url = urlGoogle
     const id = element
+
     google.charts.load('current', {
         'packages': ['corechart', 'bar']
       });
@@ -10,7 +11,10 @@ const loadChartJs = (urlGoogle, element) => {
       function initChart() {
         // Pruebas: https://docs.google.com/spreadsheets/d/1BQuJ6mRreTJ3eZ44n93N6DXULOh5r2isbMuTTM9fnrY/edit?usp=sharing
         // https://docs.google.com/spreadsheets/d/1YFu3mEJzUXsxWVFDTVK9RhZF91VlwzDB-3F4WzHITq4/edit?usp=sharing
-        URL = url;
+        let URL = url;
+        if(nameSheet){
+            URL = URL + '&sheet=' + nameSheet
+        }
         var query = new google.visualization.Query(URL);
         query.setQuery('select *');
         query.send(function(response) {
@@ -22,6 +26,8 @@ const loadChartJs = (urlGoogle, element) => {
         var data = response.getDataTable();
         var columns = data.getNumberOfColumns();
         var rows = data.getNumberOfRows();
+
+        console.log(data)
 
         var canvas = document.getElementById(id);
         
@@ -92,7 +98,7 @@ const loadChartJs = (urlGoogle, element) => {
 
 jQuery(function ($) {
     $('.gev-charts').each(function(){
-        loadChartJs($(this).attr('data-url'), $(this).attr('id'))
+        loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
     });
 
     $('#gev-btn-filter').on('click', function(e){
@@ -125,7 +131,7 @@ jQuery(function ($) {
                     var itemsMarkup = searchResults(res);
                     $wrapper.html(itemsMarkup);
                     $('.gev-charts').each(function(){
-                        loadChartJs($(this).attr('data-url'), $(this).attr('id'))
+                        loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
                     })
 
                 } else {
@@ -190,6 +196,7 @@ jQuery(function ($) {
                     class="gev-charts" 
                     id="chart-${item.itemId}" 
                     data-url="${item.urlgs} "
+                    data-sheet="${item.sheet}"
                     data-settings= "${preSettings}"
                 ></canvas>
                 </div>

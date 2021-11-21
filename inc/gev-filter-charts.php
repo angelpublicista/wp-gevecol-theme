@@ -178,6 +178,7 @@ if(!function_exists('grid_gev_charts_func')){
                                     class="gev-charts" 
                                     id="chart-<?php echo $post_id ?>" 
                                     data-url="<?php the_field('url_google_sheets'); ?>"
+                                    data-sheet="<?php the_field('nombre_de_la_hoja') ?>"
                                     data-settings= "{}"
                                 ></canvas>
                             </div>
