@@ -61,12 +61,19 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
             
                 }
 
-                console.log(series_data)
-                var dataset = {
-                    label: dataj.rows[i].c[0].v,
-                    backgroundColor: colors[i],
-                    borderColor: colors[i],
-                    data: series_data
+                if(dataSettings.type == 'doughnut' || dataSettings.type == 'pie'){
+                    var dataset = {
+                        label: dataj.rows[i].c[0].v,
+                        backgroundColor: colors,
+                        data: series_data
+                    }
+                } else {
+                    var dataset = {
+                        label: dataj.rows[i].c[0].v,
+                        backgroundColor: colors[i],
+                        borderColor: colors[i],
+                        data: series_data
+                    }
                 }
             
                 datasets.push(dataset);
