@@ -152,12 +152,37 @@ if(!function_exists('grid_gev_charts_func')){
 								$meses = implItems(get_the_terms($post->ID, 'gev_mes'), ' - ');
 								$anos = implItems(get_the_terms($post->ID, 'gev_ano'), ' - ');
 
-								$settings = [
-									'type' => get_field('tipo_de_grafica'),
-									'colors' => ["rgb(34, 208, 164)", "rgb(36, 110, 211)", "rgb(34, 208, 164)", "rgb(255, 87, 51)", "rgb(255, 87, 51)"]
-								];
+								// Array associtative
+								$colors = get_field('colores');
+
+								// Array only hex color
+								$colorsN = [];
+
+								// Colors default
+								$colorsDefault = ['#22D0A4', '#246ED3', '#FAD441'];
+
+								foreach ($colors as $color) {
+									if(strlen($color) > 0){
+										$colorsN[] = $color;
+									}
+								}
+
+								if($colorsN){
+									$settings = [
+										'type' => get_field('tipo_de_grafica'),
+										'colors' => $colorsN
+									];
+								} else {
+									$settings = [
+										'type' => get_field('tipo_de_grafica'),
+										'colors' => $colorsDefault
+									];
+								}
+								
 
 								$jsonSettings = json_encode($settings);
+
+								
 							?>
 							<div class="gev-col" style="margin-top: 80px;">
 								<div class="gev-tax-filters">
