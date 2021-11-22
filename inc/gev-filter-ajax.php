@@ -89,7 +89,38 @@ if(!function_exists('gev_filter_test')){
         // Get post from request
         $items = get_posts($args);
 
+        
+
+        // Colors default
+        $colorsDefault = ['#22D0A4', '#246ED3', '#FAD441'];
+
         foreach ($items as $item) {
+            // Array associtative
+            $colors = get_field('colores', $item->ID);
+
+            // Array only hex color
+            $colorsN = [];
+
+            foreach ($colors as $color) {
+                if(strlen($color) > 0){
+                    $colorsN[] = $color;
+                }
+            }
+
+            $settings = [];
+
+            if($colorsN){
+                $settings = [
+                    'type' => get_field('tipo_de_grafica', $item->ID),
+                    'colors' => $colorsN
+                ];
+            } else {
+                $settings = [
+                    'type' => get_field('tipo_de_grafica', $item->ID),
+                    'colors' => $colorsDefault
+                ];
+            }
+
             $items_found[] = [
                 'title' => $item->post_title,
                 'urlgs' => get_field('url_google_sheets', $item->ID),
@@ -100,10 +131,7 @@ if(!function_exists('gev_filter_test')){
                 'sheet' => get_field('nombre_de_la_hoja', $item->ID),
                 'termMes' => get_the_terms($item->ID, 'gev_mes'),
                 'termAno' => get_the_terms($item->ID, 'gev_ano'),
-                'settings' => [
-                    'type' => get_field('tipo_de_grafica', $item->ID),
-                    'colors' => ["rgb(34, 208, 164)", "rgb(36, 110, 211)", "rgb(34, 208, 164)", "rgb(255, 87, 51)", "rgb(255, 87, 51)"]
-                ]
+                'settings' => $settings
             ];
         }
 

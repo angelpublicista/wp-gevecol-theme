@@ -91,7 +91,7 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
                 maintainAspectRatio: false,
                 plugins: {
                     title: {
-                        display: true,
+                        display: false,
                         text: dataj.cols[0].label
                     }
                 },
