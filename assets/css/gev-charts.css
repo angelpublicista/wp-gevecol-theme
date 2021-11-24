@@ -42,6 +42,16 @@
     width: 180px;
 }
 
+.gev-select-wrap select{
+    border: 2px solid #ffffff;
+    cursor: pointer;
+}
+
+.gev-select-wrap select:focus{
+    border-color:#22D0A4;
+}
+
+
 .gev-arrow-cont{
     position: absolute;
     right: 10px;

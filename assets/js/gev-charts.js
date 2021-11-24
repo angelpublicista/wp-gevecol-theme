@@ -112,7 +112,6 @@ jQuery(function ($) {
     });
 
     $('#gev-filters-bar').on('change', function(){
-        console.log("Ha cambiado")
         const countryId = $('#countryFilter').val()
         const sectorId = $('#sectorFilter').val()
         const subsectorId = $('#subsectorFilter').val()
@@ -121,6 +120,7 @@ jQuery(function ($) {
             var $value = $(this).find('select').val()
             if($value !== null){
                 $(this).next().find('select').prop('disabled', false)
+                $(this).next().find('select').focus()
             } else {
                 $(this).next().find('select').prop('disabled', true)
             }
@@ -139,6 +139,7 @@ jQuery(function ($) {
                 $('.gev-loader').addClass('active')
             },
             success: function(res){
+                console.log(res)
                 var $wrapper = $('.gev-row')
                 $('.gev-loader').removeClass('active')
                 
