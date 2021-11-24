@@ -139,12 +139,16 @@ jQuery(function ($) {
                 $('.gev-loader').addClass('active')
             },
             success: function(res){
-                console.log(res)
                 var $wrapper = $('.gev-row')
                 $('.gev-loader').removeClass('active')
                 
-                if(res.length){
-                    var itemsMarkup = searchResults(res);
+                if(res.response.length){
+                    
+                    const sectorSel = $('#sectorFilter')
+                    const subSectorSel = $('#subsectorFilter')
+                    var itemsMarkup = searchResults(res.response);
+                    addOptions(res.term_list_sector, sectorSel)
+                    addOptions(res.term_list_subsector, subSectorSel)
                     $wrapper.html(itemsMarkup);
                     $('.gev-charts').each(function(){
                         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
@@ -157,6 +161,20 @@ jQuery(function ($) {
         })
     })
 
+    function addOptions(result, input){
+        $(result).each(function() {
+            var $item = $(this)[0]
+            
+
+            var o = new Option($item.name, $item.term_id);
+            /// jquerify the DOM object 'o' so we can use the html method
+            $(o).html($item.name);
+            $(input).html('<option>Seleccione una</option>');
+            $(input).append(o);
+        })
+        // console.log(result)
+        
+    }
     
 
     function searchResults(items){
@@ -181,8 +199,6 @@ jQuery(function ($) {
         items.forEach(item => {
             // Settings to JSON
             const settingsData = JSON.stringify(item.settings)
-
-            console.log(item)
 
             // Names of taxonomies
             const countryNames = joinItemsTax(item.termCountry, ',')

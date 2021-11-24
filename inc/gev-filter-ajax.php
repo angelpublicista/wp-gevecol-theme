@@ -23,8 +23,6 @@ if(!function_exists('gev_filter_test')){
         $country = $_POST['countryId'];
         $sector = $_POST['sectorId'];
         $subsector = $_POST['subsectorId'];
-        $mes = $_POST['mesId'];
-        $ano = $_POST['anoId'];
 
         $tax_query = array('relation' => 'AND');
 
@@ -71,12 +69,14 @@ if(!function_exists('gev_filter_test')){
         // Get post from request
         $items = get_posts($args);
 
-        
-
         // Colors default
         $colorsDefault = ['#22D0A4', '#246ED3', '#FAD441'];
 
+        $arrTestTerms = [];
+
         foreach ($items as $item) {
+
+            $arrTestTerms[] = $item->ID;
             // Array associtative
             $colors = get_field('colores', $item->ID);
 
@@ -113,12 +113,22 @@ if(!function_exists('gev_filter_test')){
                 'sheet' => get_field('nombre_de_la_hoja', $item->ID),
                 'termMes' => get_the_terms($item->ID, 'gev_mes'),
                 'termAno' => get_the_terms($item->ID, 'gev_ano'),
-                'settings' => $settings
+                'settings' => $settings,
             ];
         }
 
+        $my_terms_sector = wp_get_object_terms( $arrTestTerms, 'gev_sector' );
+        $my_terms_subsector = wp_get_object_terms( $arrTestTerms, 'gev_subsector' );
+
+        $result = [
+            'response' => $items_found,
+            'term_list_sector' => $my_terms_sector,
+            'term_list_subsector' => $my_terms_subsector
+        ];
+
         // Send data ajax
-        wp_send_json($items_found);
+        wp_send_json($result);
+        // echo json_encode($result);
 
         die();
     }
