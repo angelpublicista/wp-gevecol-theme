@@ -111,13 +111,26 @@ jQuery(function ($) {
         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
     });
 
-    $('#gev-btn-filter').on('click', function(e){
+    $('#gev-filters-bar').on('change', function(e){
         e.preventDefault();
         const countryId = $('#countryFilter').val()
         const sectorId = $('#sectorFilter').val()
         const subsectorId = $('#subsectorFilter').val()
         const mesId = $('#mesFilter').val()
         const anoId = $('#anoFilter').val()
+
+        if(countryId.length > 1){
+            $('#sectorFilter').prop('disabled', false)
+        } else {
+            $('#sectorFilter').prop('disabled', true)
+        }
+
+
+        if(sectorId.length > 1){
+            $('#subsectorFilter').prop('disabled', false)
+        } else {
+            $('#subsectorFilter').prop('disabled', true)
+        }
 
         $.ajax({
             url: gev_vars.ajaxurl,

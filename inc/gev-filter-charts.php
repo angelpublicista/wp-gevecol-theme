@@ -4,7 +4,7 @@ if(!function_exists('grid_gev_charts_func')){
     add_shortcode( 'grid_gev_charts', 'grid_gev_charts_func' );
     function grid_gev_charts_func(){
 
-		echo '<div class="gev-filters-bar">';
+		echo '<form class="gev-filters-bar" id="gev-filters-bar">';
 
 		echo '<div class="gev-container gev-wrap-filters">';
 		if($terms = get_terms(
@@ -17,7 +17,6 @@ if(!function_exists('grid_gev_charts_func')){
 		echo '<div class="gev-select-wrap">';
 		echo '<div class="gev-arrow-cont"><img src="'.get_stylesheet_directory_uri().'/assets/img/arrow-down-select.svg"></div>';
 		echo '<select name="countryFilter" id="countryFilter"><option value="" selected disabled>País</option>';
-		echo '<option value="">Todos los países</option>';
 		foreach($terms as $term):
 			echo '<option value="'.$term->term_id.'">' . $term->name . '</option>';
 		endforeach;
@@ -34,8 +33,7 @@ if(!function_exists('grid_gev_charts_func')){
 		
 		echo '<div class="gev-select-wrap">';
 		echo '<div class="gev-arrow-cont"><img src="'.get_stylesheet_directory_uri().'/assets/img/arrow-down-select.svg"></div>';
-		echo '<select name="sectorFilter" id="sectorFilter"><option value="" selected disabled>Sector</option>';
-		echo '<option value="">Todos los sectores</option>';
+		echo '<select name="sectorFilter" class="gev-disabled" id="sectorFilter" disabled><option value="" selected disabled>Sector</option>';
 		foreach($terms as $term):
 			echo '<option value="'.$term->term_id.'">' . $term->name . '</option>';
 		endforeach;
@@ -52,8 +50,7 @@ if(!function_exists('grid_gev_charts_func')){
 		
 		echo '<div class="gev-select-wrap">';
 		echo '<div class="gev-arrow-cont"><img src="'.get_stylesheet_directory_uri().'/assets/img/arrow-down-select.svg"></div>';
-		echo '<select name="subsectorFilter" id="subsectorFilter"><option value="" disabled selected>Subsector</option>';
-		echo '<option value="">Todos los subsectores</option>';
+		echo '<select name="subsectorFilter" id="subsectorFilter" disabled><option value="" disabled selected>Subsector</option>';
 		foreach($terms as $term):
 			echo '<option value="'.$term->term_id.'">' . $term->name . '</option>';
 		endforeach;
@@ -61,51 +58,51 @@ if(!function_exists('grid_gev_charts_func')){
 		echo '</div>';
 		endif;
 
-		if($terms = get_terms(
-			array(
-				'taxonomy' => 'gev_mes',
-				'orderby' => 'name'
-			)
-		)):
+		// if($terms = get_terms(
+		// 	array(
+		// 		'taxonomy' => 'gev_mes',
+		// 		'orderby' => 'name'
+		// 	)
+		// )):
 		
-		echo '<div class="gev-select-wrap">';
-		echo '<div class="gev-arrow-cont"><img src="'.get_stylesheet_directory_uri().'/assets/img/arrow-down-select.svg"></div>';
-		echo '<select name="mesFilter" id="mesFilter"><option value="" selected disabled>Mes</option>';
-		echo '<option value="">Todos los meses</option>';
-		foreach($terms as $term):
-			echo '<option value="'.$term->term_id.'">' . $term->name . '</option>';
-		endforeach;
-		echo '</select>';
-		echo '</div>';
-		endif;
+		// echo '<div class="gev-select-wrap">';
+		// echo '<div class="gev-arrow-cont"><img src="'.get_stylesheet_directory_uri().'/assets/img/arrow-down-select.svg"></div>';
+		// echo '<select name="mesFilter" id="mesFilter"><option value="" selected disabled>Mes</option>';
+		// echo '<option value="">Todos los meses</option>';
+		// foreach($terms as $term):
+		// 	echo '<option value="'.$term->term_id.'">' . $term->name . '</option>';
+		// endforeach;
+		// echo '</select>';
+		// echo '</div>';
+		// endif;
 
-		if($terms = get_terms(
-			array(
-				'taxonomy' => 'gev_ano',
-				'orderby' => 'name'
-			)
-		)):
+		// if($terms = get_terms(
+		// 	array(
+		// 		'taxonomy' => 'gev_ano',
+		// 		'orderby' => 'name'
+		// 	)
+		// )):
 		
-		echo '<div class="gev-select-wrap">';
-		echo '<div class="gev-arrow-cont"><img src="'.get_stylesheet_directory_uri().'/assets/img/arrow-down-select.svg"></div>';
-		echo '<select name="anoFilter" id="anoFilter"><option value="" selected disabled>Año</option>';
-		echo '<option value="">Todos los años</option>';
-		foreach($terms as $term):
-			echo '<option value="'.$term->term_id.'">' . $term->name . '</option>';
-		endforeach;
-		echo '</select>';
-		echo '</div>';
-		endif;
+		// echo '<div class="gev-select-wrap">';
+		// echo '<div class="gev-arrow-cont"><img src="'.get_stylesheet_directory_uri().'/assets/img/arrow-down-select.svg"></div>';
+		// echo '<select name="anoFilter" id="anoFilter"><option value="" selected disabled>Año</option>';
+		// echo '<option value="">Todos los años</option>';
+		// foreach($terms as $term):
+		// 	echo '<option value="'.$term->term_id.'">' . $term->name . '</option>';
+		// endforeach;
+		// echo '</select>';
+		// echo '</div>';
+		// endif;
 
-		$button = '<button id="gev-btn-filter">';
-		$button .= 'Filtrar';
-		$button .= '</button>';
+		// $button = '<button id="gev-btn-filter">';
+		// $button .= 'Filtrar';
+		// $button .= '</button>';
 		
 		echo $button;
 
 		echo '</div>'; //End gev-container
 
-		echo '</div>'; //End gev-filters-bar
+		echo '</form>'; //End gev-filters-bar
 
 		ob_start();
 		?>
