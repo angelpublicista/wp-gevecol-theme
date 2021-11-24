@@ -116,10 +116,6 @@ jQuery(function ($) {
         const countryId = $('#countryFilter').val()
         const sectorId = $('#sectorFilter').val()
         const subsectorId = $('#subsectorFilter').val()
-        const mesId = $('#mesFilter').val()
-        const anoId = $('#anoFilter').val()
-
-        console.log(countryId)
 
         $('.gev-filters-bar .gev-select-wrap').each(function(){
             var $value = $(this).find('select').val()
@@ -130,13 +126,6 @@ jQuery(function ($) {
             }
         })
 
-        // if(countryId.length > 1){
-        //     $('#sectorFilter').prop('disabled', false)
-        // } else {
-        //     $('#sectorFilter').prop('disabled', true)
-        // }
-
-
         $.ajax({
             url: gev_vars.ajaxurl,
             type: 'post',
@@ -144,9 +133,7 @@ jQuery(function ($) {
                 action: 'gev_ajax_filtercountry',
                 countryId: countryId,
                 sectorId: sectorId,
-                subsectorId: subsectorId,
-                // mesId: mesId,
-                // anoId: anoId
+                subsectorId: subsectorId
             },
             beforeSend: function(){
                 $('.gev-loader').addClass('active')
@@ -188,9 +175,13 @@ jQuery(function ($) {
         }
         var markup = '';
 
+       
+
         items.forEach(item => {
             // Settings to JSON
             const settingsData = JSON.stringify(item.settings)
+
+            console.log(item)
 
             // Names of taxonomies
             const countryNames = joinItemsTax(item.termCountry, ',')

@@ -58,24 +58,6 @@ if(!function_exists('gev_filter_test')){
                     'terms' => $subsector
                 );
         }
-
-        // Mes
-        if (strlen($mes) > 1){
-            $tax_query[] =  array(
-                    'taxonomy' => 'gev_mes',
-                    'field' => 'term_id',
-                    'terms' => $mes
-                );
-        }
-
-        // Año
-        if (strlen($ano) > 1){
-            $tax_query[] =  array(
-                    'taxonomy' => 'gev_ano',
-                    'field' => 'term_id',
-                    'terms' => $ano
-                );
-        }
         
         // Init array results
         $items_found = [];
