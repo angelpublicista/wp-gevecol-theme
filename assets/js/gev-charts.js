@@ -162,6 +162,7 @@ jQuery(function ($) {
     })
 
     function addOptions(result, input){
+        $(input).html('<option value="">Seleccione una</option>')
         $(result).each(function() {
             var $item = $(this)[0]
             
@@ -169,7 +170,6 @@ jQuery(function ($) {
             var o = new Option($item.name, $item.term_id);
             /// jquerify the DOM object 'o' so we can use the html method
             $(o).html($item.name);
-            $(input).html('<option>Seleccione una</option>');
             $(input).append(o);
         })
         // console.log(result)
