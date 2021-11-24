@@ -111,26 +111,31 @@ jQuery(function ($) {
         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
     });
 
-    $('#gev-filters-bar').on('change', function(e){
-        e.preventDefault();
+    $('#gev-filters-bar').on('change', function(){
+        console.log("Ha cambiado")
         const countryId = $('#countryFilter').val()
         const sectorId = $('#sectorFilter').val()
         const subsectorId = $('#subsectorFilter').val()
         const mesId = $('#mesFilter').val()
         const anoId = $('#anoFilter').val()
 
-        if(countryId.length > 1){
-            $('#sectorFilter').prop('disabled', false)
-        } else {
-            $('#sectorFilter').prop('disabled', true)
-        }
+        console.log(countryId)
 
+        $('.gev-filters-bar .gev-select-wrap').each(function(){
+            var $value = $(this).find('select').val()
+            if($value !== null){
+                $(this).next().find('select').prop('disabled', false)
+            } else {
+                $(this).next().find('select').prop('disabled', true)
+            }
+        })
 
-        if(sectorId.length > 1){
-            $('#subsectorFilter').prop('disabled', false)
-        } else {
-            $('#subsectorFilter').prop('disabled', true)
-        }
+        // if(countryId.length > 1){
+        //     $('#sectorFilter').prop('disabled', false)
+        // } else {
+        //     $('#sectorFilter').prop('disabled', true)
+        // }
+
 
         $.ajax({
             url: gev_vars.ajaxurl,
@@ -140,8 +145,8 @@ jQuery(function ($) {
                 countryId: countryId,
                 sectorId: sectorId,
                 subsectorId: subsectorId,
-                mesId: mesId,
-                anoId: anoId
+                // mesId: mesId,
+                // anoId: anoId
             },
             beforeSend: function(){
                 $('.gev-loader').addClass('active')
