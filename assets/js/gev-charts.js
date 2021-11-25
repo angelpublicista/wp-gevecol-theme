@@ -84,20 +84,44 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
             datasets: datasets
             };
             
-            var setup = {
-            type: dataSettings.type,
-            data: chartdata,
-            options: {
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: false,
-                        text: dataj.cols[0].label
+            let setup
+
+            if(dataSettings.type == "bar-h"){
+                setup = {
+                    type: "bar",
+                    data: chartdata,
+                    options: {
+                        indexAxis: 'y',
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: false,
+                                text: dataj.cols[0].label
+                            },
+                            legend: {
+                                position: 'right',
+                            },
+                        },
+                        responsive: true,
                     }
-                },
-                responsive: true,
+                }
+            } else {
+                setup = {
+                    type: dataSettings.type,
+                    data: chartdata,
+                    options: {
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: false,
+                                text: dataj.cols[0].label
+                            }
+                        },
+                        responsive: true,
+                    }
+                }
             }
-            }
+
             chart = new Chart(canvas, setup);
         }
       }
