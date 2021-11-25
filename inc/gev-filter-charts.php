@@ -63,7 +63,7 @@ if(!function_exists('grid_gev_charts_func')){
 			<div class="gev-loader">
 				<img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/spin-1s-200px.gif" alt="">
 			</div>
-			<div class="gev-charts-section">
+			<div class="gev-charts-section" id="gev-charts-section">
 				<div class="gev-general-report">
 					<a href="#" class="gev-download-report">
 						<span class="gev-download-report__text">Descargar informe completo</span>
