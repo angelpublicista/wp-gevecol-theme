@@ -111,29 +111,16 @@ jQuery(function ($) {
         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
     });
 
-    $('#gev-filters-bar').on('change', function(){
-        const countryId = $('#countryFilter').val()
-        const sectorId = $('#sectorFilter').val()
-        const subsectorId = $('#subsectorFilter').val()
-
-        $('.gev-filters-bar .gev-select-wrap').each(function(){
-            var $value = $(this).find('select').val()
-            if($value !== null){
-                $(this).next().find('select').prop('disabled', false)
-                $(this).next().find('select').focus()
-            } else {
-                $(this).next().find('select').prop('disabled', true)
-            }
-        })
-
+    // SELECT COUNTRY RESULT
+    $('#countryFilter').on('change', function(){ 
         $.ajax({
             url: gev_vars.ajaxurl,
             type: 'post',
             data: {
                 action: 'gev_ajax_filtercountry',
-                countryId: countryId,
-                sectorId: sectorId,
-                subsectorId: subsectorId
+                countryId: $('#countryFilter').val(),
+                sectorId: null,
+                subsectorId: null
             },
             beforeSend: function(){
                 $('.gev-loader').addClass('active')
@@ -145,10 +132,16 @@ jQuery(function ($) {
                 if(res.response.length){
                     
                     const sectorSel = $('#sectorFilter')
-                    const subSectorSel = $('#subsectorFilter')
+                    
+                    addOptions(res.term_list_sector, sectorSel, 'Sector')
+
+                    if($('#countryFilter').val() !== null){
+                        $('#sectorFilter').prop('disabled', false)
+                        $('#sectorFilter').focus()
+                    }
+                    
                     var itemsMarkup = searchResults(res.response);
-                    addOptions(res.term_list_sector, sectorSel)
-                    addOptions(res.term_list_subsector, subSectorSel)
+                    
                     $wrapper.html(itemsMarkup);
                     $('.gev-charts').each(function(){
                         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
@@ -161,19 +154,93 @@ jQuery(function ($) {
         })
     })
 
-    function addOptions(result, input){
-        $(input).html('<option value="">Seleccione una</option>')
+    // SELECT SECTOR RESULT
+    $('#sectorFilter').on('change', function(){ 
+        $.ajax({
+            url: gev_vars.ajaxurl,
+            type: 'post',
+            data: {
+                action: 'gev_ajax_filtercountry',
+                countryId: $('#countryFilter').val(),
+                sectorId: $('#sectorFilter').val(),
+                subsectorId: null
+            },
+            beforeSend: function(){
+                $('.gev-loader').addClass('active')
+            },
+            success: function(res){
+                var $wrapper = $('.gev-row')
+                $('.gev-loader').removeClass('active')
+                
+                if(res.response.length){
+                    
+                    const subSectorSel = $('#subsectorFilter')
+                    
+                    addOptions(res.term_list_subsector, subSectorSel, 'Subsector')
+
+                    if($('#countryFilter').val() !== null && $('#sectorFilter').val() !== null){
+                        $('#subsectorFilter').prop('disabled', false)
+                        $('#subsectorFilter').focus()
+                    }
+                    
+                    var itemsMarkup = searchResults(res.response);
+                    
+                    $wrapper.html(itemsMarkup);
+                    $('.gev-charts').each(function(){
+                        loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
+                    })
+
+                } else {
+                    $wrapper.html('<p class="gev-not-found">No se encontraron resultados para tu búsqueda. <br> Prueba con otros filtros</p>');
+                }
+            }
+        })
+    })
+
+    // SELECT SUBSECTOR RESULT
+    $('#subsectorFilter').on('change', function(){ 
+        $.ajax({
+            url: gev_vars.ajaxurl,
+            type: 'post',
+            data: {
+                action: 'gev_ajax_filtercountry',
+                countryId: $('#countryFilter').val(),
+                sectorId: $('#sectorFilter').val(),
+                subsectorId: $('#subsectorFilter').val()
+            },
+            beforeSend: function(){
+                $('.gev-loader').addClass('active')
+            },
+            success: function(res){
+                var $wrapper = $('.gev-row')
+                $('.gev-loader').removeClass('active')
+                
+                if(res.response.length){
+                    
+                    var itemsMarkup = searchResults(res.response);
+                    
+                    $wrapper.html(itemsMarkup);
+                    $('.gev-charts').each(function(){
+                        loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
+                    })
+
+                } else {
+                    $wrapper.html('<p class="gev-not-found">No se encontraron resultados para tu búsqueda. <br> Prueba con otros filtros</p>');
+                }
+            }
+        })
+    })
+
+    function addOptions(result, input, text){
+        $(input).html(`<option selected disabled value="">${text}</option>`)
         $(result).each(function() {
             var $item = $(this)[0]
-            
 
             var o = new Option($item.name, $item.term_id);
             /// jquerify the DOM object 'o' so we can use the html method
             $(o).html($item.name);
             $(input).append(o);
         })
-        // console.log(result)
-        
     }
     
 

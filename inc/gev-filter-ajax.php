@@ -20,9 +20,9 @@ if(!function_exists('gev_filter_test')){
     add_action( 'wp_ajax_gev_ajax_filtercountry', 'gev_filter_test');
 
     function gev_filter_test(){
-        $country = $_POST['countryId'];
-        $sector = $_POST['sectorId'];
-        $subsector = $_POST['subsectorId'];
+        $country = intval($_POST['countryId']);
+        $sector = intval($_POST['sectorId']);
+        $subsector = intval($_POST['subsectorId']);
 
         $tax_query = array('relation' => 'AND');
 
@@ -30,8 +30,17 @@ if(!function_exists('gev_filter_test')){
          * Conditional items for query
          */
 
+        // Country
+        if ($country){
+            $tax_query[] =  array(
+                    'taxonomy' => 'gev_country',
+                    'field' => 'term_id',
+                    'terms' => $country
+            );
+        }
+
         // Sector
-        if (strlen($sector) > 1){
+        if ($sector){
             $tax_query[] =  array(
                     'taxonomy' => 'gev_sector',
                     'field' => 'term_id',
@@ -39,17 +48,8 @@ if(!function_exists('gev_filter_test')){
                 );
         }
 
-        // Country
-        if (strlen($country) > 1){
-            $tax_query[] =  array(
-                    'taxonomy' => 'gev_country',
-                    'field' => 'term_id',
-                    'terms' => $country
-                );
-        }
-
         // Subsector
-        if (strlen($subsector) > 1){
+        if ($subsector){
             $tax_query[] =  array(
                     'taxonomy' => 'gev_subsector',
                     'field' => 'term_id',

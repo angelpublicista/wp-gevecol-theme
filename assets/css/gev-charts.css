@@ -136,7 +136,7 @@
 
 @media (max-width: 575.98px) {
     .gev-select-wrap{
-        width: calc(87% / 2);
+        width: 100%;
     }
 
     .gev-wrap-filters{
