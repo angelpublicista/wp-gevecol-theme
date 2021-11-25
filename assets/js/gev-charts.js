@@ -111,24 +111,16 @@ jQuery(function ($) {
         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
     });
 
-    $('#gev-btn-filter').on('click', function(e){
-        e.preventDefault();
-        const countryId = $('#countryFilter').val()
-        const sectorId = $('#sectorFilter').val()
-        const subsectorId = $('#subsectorFilter').val()
-        const mesId = $('#mesFilter').val()
-        const anoId = $('#anoFilter').val()
-
+    // SELECT COUNTRY RESULT
+    $('#countryFilter').on('change', function(){ 
         $.ajax({
             url: gev_vars.ajaxurl,
             type: 'post',
             data: {
                 action: 'gev_ajax_filtercountry',
-                countryId: countryId,
-                sectorId: sectorId,
-                subsectorId: subsectorId,
-                mesId: mesId,
-                anoId: anoId
+                countryId: $('#countryFilter').val(),
+                sectorId: null,
+                subsectorId: null
             },
             beforeSend: function(){
                 $('.gev-loader').addClass('active')
@@ -137,8 +129,19 @@ jQuery(function ($) {
                 var $wrapper = $('.gev-row')
                 $('.gev-loader').removeClass('active')
                 
-                if(res.length){
-                    var itemsMarkup = searchResults(res);
+                if(res.response.length){
+                    
+                    const sectorSel = $('#sectorFilter')
+                    
+                    addOptions(res.term_list_sector, sectorSel, 'Sector')
+
+                    if($('#countryFilter').val() !== null){
+                        $('#sectorFilter').prop('disabled', false)
+                        $('#sectorFilter').focus()
+                    }
+                    
+                    var itemsMarkup = searchResults(res.response);
+                    
                     $wrapper.html(itemsMarkup);
                     $('.gev-charts').each(function(){
                         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
@@ -151,6 +154,94 @@ jQuery(function ($) {
         })
     })
 
+    // SELECT SECTOR RESULT
+    $('#sectorFilter').on('change', function(){ 
+        $.ajax({
+            url: gev_vars.ajaxurl,
+            type: 'post',
+            data: {
+                action: 'gev_ajax_filtercountry',
+                countryId: $('#countryFilter').val(),
+                sectorId: $('#sectorFilter').val(),
+                subsectorId: null
+            },
+            beforeSend: function(){
+                $('.gev-loader').addClass('active')
+            },
+            success: function(res){
+                var $wrapper = $('.gev-row')
+                $('.gev-loader').removeClass('active')
+                
+                if(res.response.length){
+                    
+                    const subSectorSel = $('#subsectorFilter')
+                    
+                    addOptions(res.term_list_subsector, subSectorSel, 'Subsector')
+
+                    if($('#countryFilter').val() !== null && $('#sectorFilter').val() !== null){
+                        $('#subsectorFilter').prop('disabled', false)
+                        $('#subsectorFilter').focus()
+                    }
+                    
+                    var itemsMarkup = searchResults(res.response);
+                    
+                    $wrapper.html(itemsMarkup);
+                    $('.gev-charts').each(function(){
+                        loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
+                    })
+
+                } else {
+                    $wrapper.html('<p class="gev-not-found">No se encontraron resultados para tu búsqueda. <br> Prueba con otros filtros</p>');
+                }
+            }
+        })
+    })
+
+    // SELECT SUBSECTOR RESULT
+    $('#subsectorFilter').on('change', function(){ 
+        $.ajax({
+            url: gev_vars.ajaxurl,
+            type: 'post',
+            data: {
+                action: 'gev_ajax_filtercountry',
+                countryId: $('#countryFilter').val(),
+                sectorId: $('#sectorFilter').val(),
+                subsectorId: $('#subsectorFilter').val()
+            },
+            beforeSend: function(){
+                $('.gev-loader').addClass('active')
+            },
+            success: function(res){
+                var $wrapper = $('.gev-row')
+                $('.gev-loader').removeClass('active')
+                
+                if(res.response.length){
+                    
+                    var itemsMarkup = searchResults(res.response);
+                    
+                    $wrapper.html(itemsMarkup);
+                    $('.gev-charts').each(function(){
+                        loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
+                    })
+
+                } else {
+                    $wrapper.html('<p class="gev-not-found">No se encontraron resultados para tu búsqueda. <br> Prueba con otros filtros</p>');
+                }
+            }
+        })
+    })
+
+    function addOptions(result, input, text){
+        $(input).html(`<option selected disabled value="">${text}</option>`)
+        $(result).each(function() {
+            var $item = $(this)[0]
+
+            var o = new Option($item.name, $item.term_id);
+            /// jquerify the DOM object 'o' so we can use the html method
+            $(o).html($item.name);
+            $(input).append(o);
+        })
+    }
     
 
     function searchResults(items){
@@ -169,6 +260,8 @@ jQuery(function ($) {
             return joinItemsName
         }
         var markup = '';
+
+       
 
         items.forEach(item => {
             // Settings to JSON
