@@ -22,5 +22,16 @@ function hello_elementor_child_enqueue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'hello_elementor_child_enqueue_scripts', 20 );
 
+// Custom post types
+require('inc/cpt/cpt-graphics.php');
+
+// Custom taxonomies
+require('inc/tax/tax-gev-pais.php');
+require('inc/tax/tax-gev-sector.php');
+require('inc/tax/tax-gev-subsector.php');
+require('inc/tax/tax-gev-mes.php');
+require('inc/tax/tax-gev-ano.php');
+
+// Functions filters
 require('inc/gev-filter-charts.php');
 require('inc/gev-filter-ajax.php');

@@ -4,6 +4,12 @@
 if(!function_exists('gev_insert_script')){
     add_action( 'wp_enqueue_scripts', 'gev_insert_script' );
     function gev_insert_script(){
+        // Chart js
+        wp_enqueue_script( 'gev_chart_js', 'https://cdn.jsdelivr.net/npm/chart.js', array());
+
+        // Google Chart
+        wp_enqueue_script( 'gev_gchart_js', 'https://www.gstatic.com/charts/loader.js', array());
+
         // if(!is_home()) return;
         wp_enqueue_style( 'gev_charts_css', get_stylesheet_directory_uri() . '/assets/css/gev-charts.css');
         wp_register_script('gev_charts_js', get_stylesheet_directory_uri() . '/assets/js/gev-charts.js', array('jquery'), '1.0', true);
