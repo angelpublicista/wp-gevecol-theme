@@ -86,6 +86,16 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
             
             let setup
 
+            const bgColor = {
+                id: 'bgColor',
+                beforeDraw: (chart, options) =>{
+                    const { ctx, width, height} = chart;
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, width, height)
+                    ctx.restore()
+                }
+            }
+
             if(dataSettings.type == "bar-h"){
                 setup = {
                     type: "bar",
@@ -100,10 +110,11 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
                             },
                             legend: {
                                 position: 'right',
-                            },
+                            }
                         },
                         responsive: true,
-                    }
+                    }, 
+                    plugins: [bgColor]
                 }
             } else {
                 setup = {
@@ -118,7 +129,8 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
                             }
                         },
                         responsive: true,
-                    }
+                    },
+                    plugins: [bgColor]
                 }
             }
 
@@ -128,12 +140,35 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
 }
 
 
-
+function downloadPDF(id, name, meta) {
+    var canvas = document.getElementById(id);
+      //creates image
+      var canvasImg = canvas.toDataURL("image/jpeg", 1.0);
+    
+      //creates PDF from img
+      var doc = new jsPDF('landscape');
+      doc.setFontSize(20);
+      
+      doc.addImage(canvasImg, 'JPEG', 10, 30, 280, 150 );
+      doc.text(15, 15, `${name}`);
+      doc.setFontSize(10);
+      doc.text(15, 20, `${meta}`);
+      doc.save(`${name}.pdf`);
+}
 
 jQuery(function ($) {
     $('.gev-charts').each(function(){
         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
     });
+
+    $('.gev-single-report').on('click', function(e) {
+        e.preventDefault()
+
+        var $report = $(this).attr('data-report')
+        var $name = $(this).attr('data-name')
+        var $meta = $(this).attr('data-meta')
+        downloadPDF($report, $name, $meta)
+    })
 
     // SELECT COUNTRY RESULT
     $('#countryFilter').on('change', function(){ 
@@ -150,7 +185,7 @@ jQuery(function ($) {
                 $('.gev-loader').addClass('active')
             },
             success: function(res){
-                var $wrapper = $('.gev-row')
+                var $wrapper = $('.gev-charts-section')
                 $('.gev-loader').removeClass('active')
                 
                 if(res.response.length){
@@ -170,6 +205,8 @@ jQuery(function ($) {
                     $('.gev-charts').each(function(){
                         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
                     })
+
+                    
 
                 } else {
                     $wrapper.html('<p class="gev-not-found">No se encontraron resultados para tu búsqueda. <br> Prueba con otros filtros</p>');
@@ -193,7 +230,7 @@ jQuery(function ($) {
                 $('.gev-loader').addClass('active')
             },
             success: function(res){
-                var $wrapper = $('.gev-row')
+                var $wrapper = $('.gev-charts-section')
                 $('.gev-loader').removeClass('active')
                 
                 if(res.response.length){
@@ -236,7 +273,7 @@ jQuery(function ($) {
                 $('.gev-loader').addClass('active')
             },
             success: function(res){
-                var $wrapper = $('.gev-row')
+                var $wrapper = $('.gev-charts-section')
                 $('.gev-loader').removeClass('active')
                 
                 if(res.response.length){
@@ -285,7 +322,12 @@ jQuery(function ($) {
         }
         var markup = '';
 
-       
+        markup += `<div class="gev-general-report">
+            <a href="#" class="gev-download-report">
+                <span class="gev-download-report__text">Descargar informe completo</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>`;
 
         items.forEach(item => {
             // Settings to JSON
@@ -301,31 +343,43 @@ jQuery(function ($) {
 
             markup += `
             <div class="gev-col" style="margin-top: 80px;">
-                <div class="gev-tax-filters">
+                <div class="gev-row gev-meta-chart">
+                    <div class="gev-col">
+                        <div class="gev-tax-filters">
+                            <span class="gev-tax-name">${countryNames}</span>
+                            <span class="gev-tax-separator">/</span>
+                            <span class="gev-tax-name">${sectorNames}</span>
+                            <span class="gev-tax-separator">/</span>
+                            <span class="gev-tax-name">${subsectorNames}</span>
+                        </div>
 
-                    <span class="gev-tax-name">${countryNames}</span>
-                    <span class="gev-tax-separator">/</span>
-                    <span class="gev-tax-name">${sectorNames}</span>
-                    <span class="gev-tax-separator">/</span>
-                    <span class="gev-tax-name">${subsectorNames}</span>
+                        <div class="gev-tax-date">
+                            <span class="gev-tax-name">${mesNames}</span>
+                            <span class="gev-tax-separator">/</span>
+                            <span class="gev-tax-name">${mesAno}</span>
+                        </div>
+
+                        <h4 class="gev-chart-title">${item.title}</h4>
+                    </div>
+
+                    <div class="gev-col">
+                        <a href="#" class="gev-download-report gev-single-report">
+                            <span class="gev-download-report__text">Descargar gráfica</span>
+                            <i class="fas fa-arrow-down"></i>
+                        </a>
+                    </div>
                 </div>
-
-                <div class="gev-tax-date">
-                    <span class="gev-tax-name">${mesNames}</span>
-                    <span class="gev-tax-separator">/</span>
-                    <span class="gev-tax-name">${mesAno}</span>
-                </div>
-
-                <h4 class="gev-chart-title">${item.title}</h4>
+                
                 <div class="gev-chart-container">
-                <canvas 
-                    class="gev-charts" 
-                    id="chart-${item.itemId}" 
-                    data-url="${item.urlgs} "
-                    data-sheet="${item.sheet}"
-                    data-settings= '${settingsData}'
-                ></canvas>
+                    <canvas 
+                        class="gev-charts" 
+                        id="chart-${item.itemId}" 
+                        data-url="${item.urlgs} "
+                        data-sheet="${item.sheet}"
+                        data-settings= '${settingsData}'
+                    ></canvas>
                 </div>
+                <hr style="margin: 30px 0">
             </div>
             `
         });

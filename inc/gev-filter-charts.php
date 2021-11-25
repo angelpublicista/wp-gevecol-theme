@@ -63,7 +63,13 @@ if(!function_exists('grid_gev_charts_func')){
 			<div class="gev-loader">
 				<img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/spin-1s-200px.gif" alt="">
 			</div>
-			<div class="gev-row">
+			<div class="gev-charts-section">
+				<div class="gev-general-report">
+					<a href="#" class="gev-download-report">
+						<span class="gev-download-report__text">Descargar informe completo</span>
+						<i class="fas fa-arrow-down"></i>
+					</a>
+				</div>
 				<?php 
 					$args = array(
 						'post_type' => 'gev_graphics',
@@ -108,7 +114,7 @@ if(!function_exists('grid_gev_charts_func')){
 								$colorsN = [];
 
 								// Colors default
-								$colorsDefault = ['#22D0A4', '#246ED3', '#FAD441'];
+								$colorsDefault = ['#246ED3', '#27ABEF', '#22D0A4', '#00E8B1', '#FAD441', '#868B8D', '#FF9F40', '#002F8D', '#0489B4', '#17B4B7', '#8DF4DC', '#DAF4F7', '#CFD1D2', '#CFD1D2'];
 
 								foreach ($colors as $color) {
 									if(strlen($color) > 0){
@@ -134,22 +140,33 @@ if(!function_exists('grid_gev_charts_func')){
 								
 							?>
 							<div class="gev-col" style="margin-top: 80px;">
-								<div class="gev-tax-filters">
-									<span class="gev-tax-name"><?php echo $paises ?></span>
-									<span class="gev-tax-separator">/</span>
-									<span class="gev-tax-name"><?php echo $sectores ?></span>
-									<span class="gev-tax-separator">/</span>
-									<span class="gev-tax-name"><?php echo $subsectores ?></span>
+								<div class="gev-row gev-meta-chart">
+									<div class="gev-col">
+										<div class="gev-tax-filters">
+											<span class="gev-tax-name"><?php echo $paises ?></span>
+											<span class="gev-tax-separator">/</span>
+											<span class="gev-tax-name"><?php echo $sectores ?></span>
+											<span class="gev-tax-separator">/</span>
+											<span class="gev-tax-name"><?php echo $subsectores ?></span>
+										</div>
+
+										<div class="gev-tax-date">
+											<span class="gev-tax-name"><?php echo $meses ?></span>
+											<span class="gev-tax-separator">/</span>
+											<span class="gev-tax-name"><?php echo $anos ?></span>
+										</div>
+
+										<h4 class="gev-chart-title"><?php the_title(); ?></h4>
+									</div>
+
+									<div class="gev-col">
+										<?php $meta =  $paises . " / " . $sectores . " / " . $subsectores; ?>
+										<a href="#" class="gev-download-report gev-single-report" data-report="chart-<?php echo $post_id ?>" data-name="<?php the_title(); ?> " data-meta="<?php echo $meta?>">
+											<span class="gev-download-report__text">Descargar gráfica</span>
+											<i class="fas fa-arrow-down"></i>
+										</a>
+									</div>
 								</div>
-
-								<div class="gev-tax-date">
-									<span class="gev-tax-name"><?php echo $meses ?></span>
-									<span class="gev-tax-separator">/</span>
-									<span class="gev-tax-name"><?php echo $anos ?></span>
-								</div>
-
-								<h4 class="gev-chart-title"><?php the_title(); ?></h4>
-
 								<div class="gev-chart-container">
 									<canvas 
 										class="gev-charts" 
@@ -159,6 +176,7 @@ if(!function_exists('grid_gev_charts_func')){
 										data-settings= '<?php echo $jsonSettings; ?>'
 									></canvas>
 								</div>
+								<hr style="margin: 30px 0">
 							</div>
 							<?php
 						}
@@ -166,6 +184,13 @@ if(!function_exists('grid_gev_charts_func')){
 
 					wp_reset_query();
 				?>
+			</div>
+
+			<div class="gev-general-report">
+				<a href="#" class="gev-download-report">
+					<span class="gev-download-report__text">Descargar informe completo</span>
+					<i class="fas fa-arrow-down"></i>
+				</a>
 			</div>
 		</div>
 		<?php

@@ -13,9 +13,9 @@ if(!function_exists('gev_insert_script')){
         // if(!is_home()) return;
         wp_enqueue_style( 'gev_charts_css', get_stylesheet_directory_uri() . '/assets/css/gev-charts.css');
         wp_register_script('gev_charts_js', get_stylesheet_directory_uri() . '/assets/js/gev-charts.js', array('jquery'), '1.0', true);
+        wp_enqueue_script( 'gev_jspdf_js', 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.debug.js', array('jquery'), '1.3.3');
         wp_enqueue_script('gev_charts_js');
         wp_localize_script( 'gev_charts_js', 'gev_vars', ['ajaxurl' => admin_url('admin-ajax.php'), 'childUrl' => get_stylesheet_directory_uri()] );
-
     }
 }
 

@@ -59,6 +59,61 @@
     pointer-events: none;
 }
 
+.gev-row{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.gev-col{
+    width: 100%;
+}
+
+.gev-meta-chart{
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gev-meta-chart .gev-col{
+    width: auto;
+}
+
+.gev-download-report{
+    border: 2px solid #246ED3;
+    padding: 10px 20px;
+    border-radius: 50px;
+    line-height: 1em;
+    color: #31CFA5;
+    display: inline-block;
+    transition: all .3s;
+}
+
+.gev-download-report .gev-download-report__text{
+    margin-right: 10px;
+    font-family: 'FS Elliot Pro', sans-serif;
+    font-weight: bold;
+    color: #246ED3;
+}
+
+.gev-general-report{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.gev-general-report .gev-download-report{
+    color: white;
+    background-color: #31CFA5;
+    border-color: #31CFA5;
+}
+
+.gev-general-report .gev-download-report .gev-download-report__text{
+    color: white;
+}
+
+.gev-general-report .gev-download-report:hover{
+    background-color: #17B4B7;
+    border-color: #17B4B7;
+}
+
 #gev-btn-filter{
     margin: 10px;
     background-color: #22D0A4;
