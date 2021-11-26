@@ -145,11 +145,23 @@ function downloadPDF(id, name, meta) {
       //creates image
       var canvasImg = canvas.toDataURL("image/jpeg", 1.0);
     
+      
       //creates PDF from img
-      var doc = new jsPDF('landscape');
+      var doc = new jsPDF('l');
+
+      var width = doc.internal.pageSize.width;
+      var height = doc.internal.pageSize.height;
+
       doc.setFontSize(20);
       
-      doc.addImage(canvasImg, 'JPEG', 10, 30, 280, 160 );
+      if(screen.width > 1290 && screen.width < 1440){
+        doc.addImage(canvasImg, 'JPEG', 10, 50, 280, 100 );
+      }
+
+      if(screen.width > 1441){
+        doc.addImage(canvasImg, 'JPEG', 10, 30, 250, 160 );
+      }
+      
       doc.text(15, 15, `${name}`);
       doc.setFontSize(10);
       doc.text(15, 20, `${meta}`);
