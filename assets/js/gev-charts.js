@@ -1,3 +1,5 @@
+
+// Load Charts js
 const loadChartJs = (urlGoogle, element, nameSheet) => {
 
     const url = urlGoogle
@@ -9,8 +11,6 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
       google.charts.setOnLoadCallback(initChart);
     
       function initChart() {
-        // Pruebas: https://docs.google.com/spreadsheets/d/1BQuJ6mRreTJ3eZ44n93N6DXULOh5r2isbMuTTM9fnrY/edit?usp=sharing
-        // https://docs.google.com/spreadsheets/d/1YFu3mEJzUXsxWVFDTVK9RhZF91VlwzDB-3F4WzHITq4/edit?usp=sharing
         let URL = url;
         if(nameSheet){
             URL = URL + '&sheet=' + nameSheet
@@ -139,7 +139,7 @@ const loadChartJs = (urlGoogle, element, nameSheet) => {
       }
 }
 
-
+// Download pdfs
 function downloadPDF(id, name, meta) {
     var canvas = document.getElementById(id);
       //creates image
@@ -168,83 +168,19 @@ function downloadPDF(id, name, meta) {
       doc.save(`${name}.pdf`);
 }
 
-
-
-
 jQuery(function ($) {
-    
 
+    // Create init charts
     $('.gev-charts').each(function(){
         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
     });
-
-    function downloadGeneralReport() {
-        $('.gev-general-report .gev-download-report').click(function(event) {
-            event.preventDefault()
-            // get size of report page
-            var reportPageHeight = $('#gev-charts-section').innerHeight();
-            var reportPageWidth = $('#gev-charts-section').innerWidth();
-
-            
-            
-            // create a new canvas object that we will populate with all other canvas objects
-            var pdfCanvas = $('<canvas />').attr({
-              id: "canvaspdf",
-              width: reportPageWidth,
-              height: reportPageHeight
-            });
-
-            
-            
-            // keep track canvas position
-            var pdfctx = $(pdfCanvas)[0].getContext('2d');
-            var pdfctxX = 0;
-            var pdfctxY = 0;
-            var buffer = 100;
-
-            
-            
-            // for each chart.js chart
-            $("canvas").each(function(index) {
-             
-              // get the chart height/width
-              var canvasHeight = $(this).innerHeight();
-              var canvasWidth = $(this).innerWidth();
-              
-              // draw the chart into the new canvas
-              pdfctx.drawImage($(this)[0], pdfctxX, pdfctxY, canvasWidth, canvasHeight);
-              pdfctxX += canvasWidth + buffer;
-              
-              // our report page is in a grid pattern so replicate that in the new canvas
-              if (index % 2 === 1) {
-                pdfctxX = 0;
-                pdfctxY += canvasHeight + buffer;
-              }
-            });
-            
-            // create new pdf and add our new canvas as an image
-            var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
-            pdf.addImage($(pdfCanvas)[0], 'PNG', 0, 0);
-            
-            // download the pdf
-            pdf.save('filename.pdf');
-        });
     
-    }
 
-    function downloadSingleReport(){
-        $('.gev-single-report').on('click', function(e) {
-            e.preventDefault()
-    
-            var $report = $(this).attr('data-report')
-            var $name = $(this).attr('data-name')
-            var $meta = $(this).attr('data-meta')
-            downloadPDF($report, $name, $meta)
-        })
-    }
+    /**
+     * SEARCH CHARTS REQUEST
+     */
 
-    downloadSingleReport()
-    downloadGeneralReport()
+
     // SELECT COUNTRY RESULT
     $('#countryFilter').on('change', function(){ 
         $.ajax({
@@ -281,8 +217,8 @@ jQuery(function ($) {
                         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
                     })
 
+                    // Reload PDF download function
                     downloadSingleReport()
-                    downloadGeneralReport()
                     
 
                 } else {
@@ -328,6 +264,9 @@ jQuery(function ($) {
                         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
                     })
 
+                    // Reload PDF download function
+                    downloadSingleReport()
+
                 } else {
                     $wrapper.html('<p class="gev-not-found">No se encontraron resultados para tu búsqueda. <br> Prueba con otros filtros</p>');
                 }
@@ -362,6 +301,9 @@ jQuery(function ($) {
                         loadChartJs($(this).attr('data-url'), $(this).attr('id'), $(this).attr('data-sheet'))
                     })
 
+                    // Reload PDF download function
+                    downloadSingleReport()
+
                 } else {
                     $wrapper.html('<p class="gev-not-found">No se encontraron resultados para tu búsqueda. <br> Prueba con otros filtros</p>');
                 }
@@ -381,6 +323,18 @@ jQuery(function ($) {
         })
     }
     
+    function downloadSingleReport(){
+        $('.gev-single-report').on('click', function(e) {
+            e.preventDefault()
+    
+            var $report = $(this).attr('data-report')
+            var $name = $(this).attr('data-name')
+            var $meta = $(this).attr('data-meta')
+            downloadPDF($report, $name, $meta)
+        })
+    }
+
+    downloadSingleReport()
 
     function searchResults(items){
 
@@ -398,13 +352,6 @@ jQuery(function ($) {
             return joinItemsName
         }
         var markup = '';
-
-        markup += `<div class="gev-general-report">
-            <a href="#" class="gev-download-report">
-                <span class="gev-download-report__text">Descargar informe completo</span>
-                <i class="fas fa-arrow-down"></i>
-            </a>
-        </div>`;
 
         items.forEach(item => {
             // Settings to JSON

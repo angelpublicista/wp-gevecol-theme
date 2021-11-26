@@ -64,12 +64,6 @@ if(!function_exists('grid_gev_charts_func')){
 				<img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/spin-1s-200px.gif" alt="">
 			</div>
 			<div class="gev-charts-section" id="gev-charts-section">
-				<div class="gev-general-report">
-					<a href="#" class="gev-download-report">
-						<span class="gev-download-report__text">Descargar informe completo</span>
-						<i class="fas fa-arrow-down"></i>
-					</a>
-				</div>
 				<?php 
 					$args = array(
 						'post_type' => 'gev_graphics',
@@ -184,13 +178,6 @@ if(!function_exists('grid_gev_charts_func')){
 
 					wp_reset_query();
 				?>
-			</div>
-
-			<div class="gev-general-report">
-				<a href="#" class="gev-download-report">
-					<span class="gev-download-report__text">Descargar informe completo</span>
-					<i class="fas fa-arrow-down"></i>
-				</a>
 			</div>
 		</div>
 		<?php
