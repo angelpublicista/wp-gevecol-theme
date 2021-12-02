@@ -49,3 +49,5 @@ require('inc/tax/tax-gev-ano.php');
 // Functions filters
 require('inc/gev-filter-charts.php');
 require('inc/gev-filter-ajax.php');
+
+require('inc/sc/sc-formacion.php');
