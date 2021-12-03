@@ -201,6 +201,104 @@ if(!function_exists('gev_formacion_posts_func')){
                         Lorem ipsum dolor sit amet.
                     </h4>
                 </article>
+
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__presentation__fig">
+                        <img class="gev-form-cont__presentation__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <a href="#" class="gev-form-cont__presentation__cap gev-form-cont__presentation__download">
+                            <button href="#" class="gev-form-cont__presentation__btnDownload">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </a>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
+
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__presentation__fig">
+                        <img class="gev-form-cont__presentation__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <a href="#" class="gev-form-cont__presentation__cap gev-form-cont__presentation__download">
+                            <button href="#" class="gev-form-cont__presentation__btnDownload">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </a>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
+
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__presentation__fig">
+                        <img class="gev-form-cont__presentation__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <a href="#" class="gev-form-cont__presentation__cap gev-form-cont__presentation__download">
+                            <button href="#" class="gev-form-cont__presentation__btnDownload">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </a>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
+
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__presentation__fig">
+                        <img class="gev-form-cont__presentation__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <a href="#" class="gev-form-cont__presentation__cap gev-form-cont__presentation__download">
+                            <button href="#" class="gev-form-cont__presentation__btnDownload">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </a>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
+
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__presentation__fig">
+                        <img class="gev-form-cont__presentation__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <a href="#" class="gev-form-cont__presentation__cap gev-form-cont__presentation__download">
+                            <button href="#" class="gev-form-cont__presentation__btnDownload">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </a>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
+
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__presentation__fig">
+                        <img class="gev-form-cont__presentation__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <a href="#" class="gev-form-cont__presentation__cap gev-form-cont__presentation__download">
+                            <button href="#" class="gev-form-cont__presentation__btnDownload">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </a>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
+
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__presentation__fig">
+                        <img class="gev-form-cont__presentation__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <a href="#" class="gev-form-cont__presentation__cap gev-form-cont__presentation__download">
+                            <button href="#" class="gev-form-cont__presentation__btnDownload">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </a>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
             </div>
 
             <a href="#" class="gev-form-cont__articles__showMore" data-items="gev-presentations">
