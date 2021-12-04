@@ -27,6 +27,11 @@ if(!function_exists('gev_formacion_posts_func')){
                 <article class="gev-form-cont__article">
                     <iframe id='audio_79072421' frameborder='0' allowfullscreen='' scrolling='no' height='200' style='border:1px solid #EEE; box-sizing:border-box; width:100%;' src="https://www.ivoox.com/player_ej_79072421_4_1.html?c1=ff6600"></iframe>
                 </article>
+
+                <article class="gev-form-cont__article">
+                    <iframe id='audio_79072421' frameborder='0' allowfullscreen='' scrolling='no' height='200' style='border:1px solid #EEE; box-sizing:border-box; width:100%;' src="https://www.ivoox.com/player_ej_79072421_4_1.html?c1=ff6600"></iframe>
+                </article>
+
                 <article class="gev-form-cont__article">
                     <iframe id='audio_79072421' frameborder='0' allowfullscreen='' scrolling='no' height='200' style='border:1px solid #EEE; box-sizing:border-box; width:100%;' src="https://www.ivoox.com/player_ej_79072421_4_1.html?c1=ff6600"></iframe>
                 </article>
@@ -64,6 +69,14 @@ if(!function_exists('gev_formacion_posts_func')){
 
 
         <div class="gev-form-cont gev-form-cont__video"  id="gev-videos">
+            <!-- MODAL WINDOW -->
+            <div class="gev-modal-video">
+                <div class="gev-modal-video__wrapper">
+                    <h4 class="gev-modal-video__title">Lorem ipsum dolor sit amet.</h4>
+                    <iframe width="1280" height="753" src="https://www.youtube.com/embed/S8QI1HXnhO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
             <div class="gev-form-cont__heading">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/formacion/iconos_formacion_icon_74_videos.svg" alt="" class="gev-form-cont__heading__icon">
                 <h2 class="gev-form-cont__heading__title">Videos</h2>
@@ -73,7 +86,8 @@ if(!function_exists('gev_formacion_posts_func')){
                 <article class="gev-form-cont__article">
                     <figure class="gev-form-cont__video__fig">
                         <img class="gev-form-cont__video__cover" src="https://via.placeholder.com/1920x1080" alt="">
-                        <figcaption class="gev-form-cont__video__cap">
+                        <figcaption class="gev-form-cont__video__cap" data-title="lorem ipsum">
+                            <iframe width="1280" height="753" src="https://www.youtube.com/embed/S8QI1HXnhO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/formacion/icon-play-form.svg" alt="" class="gev-form-cont__video__play">
                         </figcaption>
                     </figure>
@@ -85,7 +99,8 @@ if(!function_exists('gev_formacion_posts_func')){
                 <article class="gev-form-cont__article">
                     <figure class="gev-form-cont__video__fig">
                         <img class="gev-form-cont__video__cover" src="https://via.placeholder.com/1920x1080" alt="">
-                        <figcaption class="gev-form-cont__video__cap">
+                        <figcaption class="gev-form-cont__video__cap" data-title="lorem ipsum">
+                            <iframe width="1280" height="753" src="https://www.youtube.com/embed/S8QI1HXnhO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/formacion/icon-play-form.svg" alt="" class="gev-form-cont__video__play">
                         </figcaption>
                     </figure>
@@ -97,7 +112,8 @@ if(!function_exists('gev_formacion_posts_func')){
                 <article class="gev-form-cont__article">
                     <figure class="gev-form-cont__video__fig">
                         <img class="gev-form-cont__video__cover" src="https://via.placeholder.com/1920x1080" alt="">
-                        <figcaption class="gev-form-cont__video__cap">
+                        <figcaption class="gev-form-cont__video__cap" data-title="lorem ipsum">
+                            <iframe width="1280" height="753" src="https://www.youtube.com/embed/S8QI1HXnhO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/formacion/icon-play-form.svg" alt="" class="gev-form-cont__video__play">
                         </figcaption>
                     </figure>
@@ -109,7 +125,60 @@ if(!function_exists('gev_formacion_posts_func')){
                 <article class="gev-form-cont__article">
                     <figure class="gev-form-cont__video__fig">
                         <img class="gev-form-cont__video__cover" src="https://via.placeholder.com/1920x1080" alt="">
-                        <figcaption class="gev-form-cont__video__cap">
+                        <figcaption class="gev-form-cont__video__cap" data-title="lorem ipsum">
+                            <iframe width="1280" height="753" src="https://www.youtube.com/embed/S8QI1HXnhO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/formacion/icon-play-form.svg" alt="" class="gev-form-cont__video__play">
+                        </figcaption>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
+
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__video__fig">
+                        <img class="gev-form-cont__video__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <figcaption class="gev-form-cont__video__cap" data-title="lorem ipsum">
+                            <iframe width="1280" height="753" src="https://www.youtube.com/embed/S8QI1HXnhO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/formacion/icon-play-form.svg" alt="" class="gev-form-cont__video__play">
+                        </figcaption>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
+
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__video__fig">
+                        <img class="gev-form-cont__video__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <figcaption class="gev-form-cont__video__cap" data-title="lorem ipsum">
+                            <iframe width="1280" height="753" src="https://www.youtube.com/embed/S8QI1HXnhO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/formacion/icon-play-form.svg" alt="" class="gev-form-cont__video__play">
+                        </figcaption>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
+
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__video__fig">
+                        <img class="gev-form-cont__video__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <figcaption class="gev-form-cont__video__cap" data-title="lorem ipsum">
+                            <iframe width="1280" height="753" src="https://www.youtube.com/embed/S8QI1HXnhO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/formacion/icon-play-form.svg" alt="" class="gev-form-cont__video__play">
+                        </figcaption>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
+
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__video__fig">
+                        <img class="gev-form-cont__video__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <figcaption class="gev-form-cont__video__cap" data-title="lorem ipsum">
+                            <iframe width="1280" height="753" src="https://www.youtube.com/embed/S8QI1HXnhO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/formacion/icon-play-form.svg" alt="" class="gev-form-cont__video__play">
                         </figcaption>
                     </figure>
@@ -132,6 +201,20 @@ if(!function_exists('gev_formacion_posts_func')){
             </div>
 
             <div class="gev-form-cont__articles">
+                <article class="gev-form-cont__article">
+                    <figure class="gev-form-cont__presentation__fig">
+                        <img class="gev-form-cont__presentation__cover" src="https://via.placeholder.com/1920x1080" alt="">
+                        <a href="#" class="gev-form-cont__presentation__cap gev-form-cont__presentation__download">
+                            <button href="#" class="gev-form-cont__presentation__btnDownload">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </a>
+                    </figure>
+                    <h4 class="gev-form-cont__article__title">
+                        Lorem ipsum dolor sit amet.
+                    </h4>
+                </article>
+
                 <article class="gev-form-cont__article">
                     <figure class="gev-form-cont__presentation__fig">
                         <img class="gev-form-cont__presentation__cover" src="https://via.placeholder.com/1920x1080" alt="">
