@@ -5,13 +5,13 @@
 .gev-chart-container{
     position: relative;
     margin: auto;
-    height: 70vh;
+    height: 55vh;
     width: 100%;
 }
 
 .gev-container{
     width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
     margin: auto;
     padding: 2em;
 }
@@ -200,5 +200,9 @@
 
     .gev-chart-container{
         height: 60vh;
+    }
+
+    .gev-single-report{
+        margin-bottom: 1em;
     }
 }
