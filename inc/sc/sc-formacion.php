@@ -81,7 +81,7 @@ if(!function_exists('gev_formacion_posts_func')){
                                 <?php else: ?>
                                     <img class="gev-form-cont__video__cover" src="https://via.placeholder.com/1920x1080" alt="">
                                 <?php endif; ?>
-                                <figcaption class="gev-form-cont__video__cap" data-title="lorem ipsum">
+                                <figcaption class="gev-form-cont__video__cap" data-title="<?php the_title(); ?>">
                                     <?php the_content(); ?>
                                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/formacion/icon-play-form.svg" alt="" class="gev-form-cont__video__play">
                                 </figcaption>
