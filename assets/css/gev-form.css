@@ -61,9 +61,13 @@
     font-family: 'FS Elliot Pro', sans-serif;
 }
 
-.gev-form-cont__video .gev-form-cont__article, .gev-form-cont__presentation .gev-form-cont__article{
-    width: calc(100% / 3);
+@media (min-width: 576px) {
+    .gev-form-cont__video .gev-form-cont__article, .gev-form-cont__presentation .gev-form-cont__article{
+        width: calc(100% / 3);
+    }
 }
+
+
 
 .gev-form-cont__video .gev-form-cont__article:first-child, .gev-form-cont__presentation .gev-form-cont__article:first-child{
     width: 100%;
@@ -91,6 +95,16 @@
     align-items: center;
     cursor: pointer;
     transition: all .3s;
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .gev-form-cont__video__cap .gev-form-cont__video__play{
+        width: 50px;
+    }
+
+    .gev-form-cont__article:first-child .gev-form-cont__video__cap .gev-form-cont__video__play{
+        width: 70px;
+    }
 }
 
 .gev-form-cont__video__cap:hover, .gev-form-cont__presentation__cap:hover{
@@ -128,16 +142,20 @@
     padding: 1em;
 }
 
-.gev-form-cont__presentation .gev-form-cont__article:first-child .gev-form-cont__presentation__btnDownload{
-    width: 70px;
-    height: 70px;
-    font-size: 20px;
+@media (min-width: 576px) {
+    .gev-form-cont__presentation .gev-form-cont__article:first-child .gev-form-cont__presentation__btnDownload{
+        width: 70px;
+        height: 70px;
+        font-size: 20px;
+    }
+
+    .gev-form-cont__presentation .gev-form-cont__article:first-child .gev-form-cont__presentation__download{
+        justify-content: center;
+        align-items: center;
+    }
 }
 
-.gev-form-cont__presentation .gev-form-cont__article:first-child .gev-form-cont__presentation__download{
-    justify-content: center;
-    align-items: center;
-}
+
 
 .gev-modal-video{
     position: fixed;
@@ -163,4 +181,35 @@
 
 .gev-modal-video__title{
     color: white;
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) { 
+    .gev-modal-video .gev-modal-video__wrapper iframe{
+        height: 367px !important;
+    }
+ }
+
+@media (max-width: 991.98px) { 
+    .gev-form-cont__heading__title{
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .gev-form-cont__heading{
+        justify-content: center;
+    }
+    .gev-form-cont__heading__icon{
+        width: 90px;
+    }
+
+    .gev-modal-video{
+        padding: 2em;
+    }
+
+    .gev-modal-video .gev-modal-video__wrapper iframe{
+        width: 300px !important;
+        max-width: 100%;
+        height: 186px !important;
+    }
 }
