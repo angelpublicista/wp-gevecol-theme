@@ -119,11 +119,11 @@
     display: flex;
     width: 30px;
     height: 30px;
-    background-color: white;
-    color: #22D0A4;
-    border: 2px solid #22D0A4;
+    background-color: white !important;
+    color: #22D0A4 !important;
+    border: 2px solid #22D0A4 !important;
     box-sizing: border-box;
-    border-radius: 50%;
+    border-radius: 50% !important;
     justify-content: center;
     align-items: center;
     font-size: 10px;
@@ -132,8 +132,8 @@
 }
 
 .gev-form-cont__presentation__download:hover .gev-form-cont__presentation__btnDownload{
-    background-color: #22D0A4;
-    color: white;
+    background-color: #22D0A4 !important;
+    color: white !important;
 }
 
 .gev-form-cont__presentation__download{
