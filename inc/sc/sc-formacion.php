@@ -137,7 +137,7 @@ if(!function_exists('gev_formacion_posts_func')){
                     <i class="fas fa-chevron-down"></i>
                 </a>
             </div>
-        <?php endif; ?>
+        <?php endif; wp_reset_query(); ?>
 
         <?php
         return ob_get_clean();
